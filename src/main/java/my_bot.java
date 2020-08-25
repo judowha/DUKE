@@ -11,19 +11,30 @@ public class my_bot {
     }
     public static void storeInput(){
         String line;
-        String[] list=new String[100];
-        int listNUm=0;
+        tasks[] list=new tasks[100];
+        tasks.setTaskNum(0);
         Scanner in=new Scanner(System.in);
         while(!(line= in.nextLine()).equals("bye")){
             if(line.equals("list")){
-                for(int i=0;i<listNUm;i++){
-                    System.out.println((i+1)+"."+list[i]);
+                System.out.println("here are the tasks in you list: ");
+                for(int i=0;i<tasks.getTaskNum();i++){
+                    System.out.print((i+1)+".");
+                    list[i].markAsDone();
                 }
             }
+            else if(line.contains("done")){
+                String[] commandPart=new String[2];
+                commandPart=line.split(" ");
+                int currentTask=Integer.parseInt(commandPart[1])-1;
+                list[currentTask].setDone();
+                System.out.println("Nice, I have marked this work as done");
+                list[currentTask].markAsDone();
+
+            }
             else{
-                list[listNUm]=line;
+                list[tasks.getTaskNum()]=new tasks(line);
                 System.out.println("   added: "+line);
-                listNUm++;
+                tasks.setTaskNum(tasks.getTaskNum()+1);
             }
         }
 
