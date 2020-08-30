@@ -1,17 +1,23 @@
 public class tasks {
-    private String task;
-    private boolean done;
-    private static int taskNum=0;
+    protected String task;
+    protected boolean done;
+    protected static int taskNum=0;
 
     public tasks(String task) {
         this.task = task;
         this.done=false;
+        taskNum++;
     }
 
 
     public void setTask(String task) {
         this.task=task;
     }
+
+    public static void setTaskNum(int taskNum) {
+        tasks.taskNum = taskNum;
+    }
+
     public void setDone(){
         this.done=true;
     }
@@ -20,19 +26,15 @@ public class tasks {
         return task;
     }
 
-    public boolean isDone() {
-        return done;
-    }
-
-    public static void setTaskNum(int taskNum) {
-        tasks.taskNum = taskNum;
-    }
-
     public static int getTaskNum() {
         return taskNum;
     }
 
-    public void markAsDone(){
+    public boolean isDone() {
+        return done;
+    }
+
+    public void displayTasks(){
         if(done==true)
             System.out.println("[✓] "+task);
         else System.out.println("[✗] "+task);
