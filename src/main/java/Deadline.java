@@ -1,9 +1,12 @@
 public class Deadline extends tasks{
+    private static final int CommandLength=9;
     public Deadline (String task){
-       super(task.substring(9));
+
+        super(task.substring(CommandLength));
         System.out.println("Got it. I have add this task: ");
         displayTasks();
         System.out.println("Now you have "+taskNum+" tasks in the list.");
+        System.out.println("");
     }
 
 

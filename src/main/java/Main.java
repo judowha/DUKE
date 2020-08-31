@@ -50,7 +50,8 @@ public class Main {
 
     private static void AddFaction(String line, tasks[] list) {
         list[tasks.getTaskNum()]=new tasks(line);
-        System.out.println("   added: "+ line);
+        System.out.println("   added: ");
+        System.out.println("");
     }
 
     private static void MarkAsDoneFaction(String[] commands, tasks[] list) {
@@ -58,6 +59,7 @@ public class Main {
         list[currentTask].setDone();
         System.out.println("Nice, I have marked this work as done");
         list[currentTask].displayTasks();
+        System.out.println("");
     }
 
     private static void listFaction(tasks[] list) {
@@ -66,6 +68,7 @@ public class Main {
             System.out.print("  "+(i+1)+".");
             list[i].displayTasks();
         }
+        System.out.println("");
     }
 
 
