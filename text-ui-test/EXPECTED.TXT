@@ -2,16 +2,24 @@ Hello! I'm Duke
 What can I do for you?
 
 Got it. I've added this task:
-  [T][✗] reak books
+  [T][✗] read books
 Now you have 1 tasks in the list.
 
-Got it. I have add this task: 
+DukeException: OOPS!!! The description of a todo cannot be empty.
+
+Got it. I have add this task:
   [D][✗] return books (by Sunday)
 Now you have 2 tasks in the list.
 
-Got it. I have add this task: 
+DukeException: OOPS!!! The description of a deadline cannot be empty.
+
+Got it. I have add this task:
   [E][✗] project meeting (at Aug 6th 2-4pm)
 Now you have 3 tasks in the list.
+
+DukeException: OOPS!!! Please indicate the time of the event by '/'
+
+DukeException: OOPS!!! This command doesn't exist
 
 Nice, I have marked this work as done
   [D][✓] return books (by Sunday)
