@@ -1,6 +1,10 @@
-todo reak books
+todo read books
+todo
 deadline return books /by Sunday
+deadline
 event project meeting /at Aug 6th 2-4pm
+event project meeting
+test invalid command
 done 2
 list
 bye

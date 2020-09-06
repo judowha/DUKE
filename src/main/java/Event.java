@@ -1,11 +1,11 @@
 public class Event  extends tasks{
     private static final int CommandLength=6;
-    public Event (String task){
+    public Event (String task) throws DukeException{
         super(task.substring(CommandLength));
         System.out.println("Got it. I have add this task: ");
         displayTasks();
         System.out.println("Now you have "+taskNum+" tasks in the list.");
-        System.out.println("");
+
     }
     public  void displayTasks(){
         System.out.print("  [E]");

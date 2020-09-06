@@ -34,7 +34,7 @@ public class tasks {
         return done;
     }
 
-    public void displayTasks(){
+    public void displayTasks() {
         if(done==true)
             System.out.println("[✓] "+task);
         else System.out.println("[✗] "+task);
