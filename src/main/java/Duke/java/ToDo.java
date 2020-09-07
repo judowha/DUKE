@@ -1,3 +1,5 @@
+package Duke.java;
+
 public class ToDo extends tasks {
     private static final int CommandLength=5;
     public ToDo(String task){

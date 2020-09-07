@@ -1,3 +1,5 @@
+package Duke.java;
+
 public class tasks {
     protected String task;
     protected boolean done;
