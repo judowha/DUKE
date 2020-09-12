@@ -1,7 +1,10 @@
 import java.util.Scanner;
 import Duke.java.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
+    private static HashMap<Integer,String> taskList = new HashMap<>();
     public static void main(String[] args) throws DukeException {
 
         showGreeting();
@@ -18,7 +21,6 @@ public class Main {
 
     public static void storeInput() {
         String line;
-        String[] commands=new String[100];
         tasks[] list=new tasks[100];
         tasks.setTaskNum(0);
         Scanner in=new Scanner(System.in);
@@ -37,17 +39,11 @@ public class Main {
 
     public static void DukeComannds(String line, tasks[] list) throws DukeException {
         String[] commands;
+
         commands= line.split(" ");
 
         if(line.equals("list")){
             listFaction(list);
-            System.out.println("");
-        }
-        else if(commands[0].equals("done")){
-            if(commands.length<2){
-                throw new DukeException("OOPS!!! The description of a done cannot be empty.");
-            }
-            MarkAsDoneFaction(commands, list);
             System.out.println("");
         }
         else if(commands[0].equals("todo")){
@@ -56,6 +52,7 @@ public class Main {
             }
 
             list[tasks.getTaskNum()]=new ToDo(line);
+            taskList.put(tasks.getTaskNum(),list[tasks.getTaskNum()-1].getTask());
             System.out.println("");
         }
         else if (commands[0].equals("deadline")){
@@ -66,6 +63,7 @@ public class Main {
                 throw new DukeException("OOPS!!! Please indicate the time of the deadline by '/' ");
             }
             list[tasks.getTaskNum()]=new Deadline(line);
+            taskList.put(tasks.getTaskNum(),list[tasks.getTaskNum()-1].getTask());
             System.out.println("");
         }
 
@@ -77,8 +75,23 @@ public class Main {
                 throw new DukeException("OOPS!!! Please indicate the time of the event by '/' ");
             }
             list[tasks.getTaskNum()]=new Event(line);
+            taskList.put(tasks.getTaskNum(),list[tasks.getTaskNum()-1].getTask());
             System.out.println("");
         }
+        else if(commands[0].equals("done")){
+            if(commands.length<2){
+                throw new DukeException("OOPS!!! The description of a done cannot be empty.");
+            }
+            MarkAsDoneFaction(commands, list);
+            System.out.println("");
+        }
+        else if(commands[0].equals("delete")){
+            if(commands.length<2){
+                throw new DukeException("OOPS!!! The description of a done cannot be empty.");
+            }
+            else deleteTask(commands,list);
+        }
+
 
         else{
             throw new DukeException("OOPS!!! This command doesn't exist");
@@ -86,28 +99,29 @@ public class Main {
 
     }
 
-    private static void AddFaction(String line, tasks[] list) {
-        list[tasks.getTaskNum()]=new tasks(line);
-        System.out.println("   added: ");
-
-    }
-
-    private static void MarkAsDoneFaction(String[] commands, tasks[] list) throws DukeException{
+    private static void MarkAsDoneFaction(String[] commands, tasks[] list) {
         int currentTask=Integer.parseInt(commands[1])-1;
         list[currentTask].setDone();
-        System.out.println("Nice, I have marked this work as done");
-        list[currentTask].displayTasks();
-
+        taskList.put(currentTask+1,list[currentTask].getTask());
     }
 
-    private static void listFaction(tasks[] list) throws DukeException{
+    private static void deleteTask(String[] commands, tasks[] list){
+        int targetTask=Integer.parseInt(commands[1]);
+        System.out.println("Noted. I've removed this task:");
+        list[targetTask-1].displayTasks();
+        System.out.println("Now you have "+tasks.getTaskNum()+ " tasks in the list.");
+        taskList.remove(targetTask);
+    }
+
+    private static void listFaction(tasks[] list) {
         System.out.println("here are the tasks in you list: ");
-        for(int i=0;i<tasks.getTaskNum();i++){
-            System.out.print("  "+(i+1)+".");
-            list[i].displayTasks();
+        for(Map.Entry<Integer,String> entry: taskList.entrySet()){
+            System.out.println(entry.getKey()+". "+entry.getValue());
         }
 
     }
+
+
 
 
 }
