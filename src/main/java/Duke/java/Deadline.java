@@ -6,7 +6,7 @@ public class Deadline extends tasks{
         String[] contain;
         contain=(task.substring(CommandLength)).split("/");
         String commandContain=contain[0]+"("+contain[1]+")";
-        this.task="  [D][✗] "+commandContain;
+        this.task="  [D][\u2718] "+commandContain;
 
         System.out.println("Got it. I have add this task: ");
         displayTasks();
@@ -18,7 +18,7 @@ public class Deadline extends tasks{
     public void setDone() {
         super.setDone();
         System.out.println("Nice! I've marked this task as done: ");
-        this.task="  [D][✓] " +task.substring(9);
+        this.task="  [D][\u2713] " +task.substring(9);
         displayTasks();
     }
 

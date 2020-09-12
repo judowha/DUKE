@@ -1,2 +1,1 @@
-  [T][✗] read the book
-  [D][✗] return the book (by 1pm)
+1.  [T][✘] read a book
