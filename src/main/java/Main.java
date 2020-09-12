@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import Duke.java.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws DukeException {
@@ -25,7 +27,7 @@ public class Main {
         while(!(line= in.nextLine()).equals("bye")){
             try {
                 DukeComannds(line, list);
-            }catch(DukeException e){
+            }catch(DukeException | IOException e){
                 System.out.println(e);
                 System.out.println("");
             }
@@ -35,10 +37,10 @@ public class Main {
 
     }
 
-    public static void DukeComannds(String line, tasks[] list) throws DukeException {
+    public static void DukeComannds(String line, tasks[] list) throws DukeException, IOException {
         String[] commands;
         commands= line.split(" ");
-
+        String filePath="duke.txt";
         if(line.equals("list")){
             listFaction(list);
             System.out.println("");
@@ -49,6 +51,8 @@ public class Main {
             }
             MarkAsDoneFaction(commands, list);
             System.out.println("");
+            writeToFile(filePath,getFileContain(list));
+
         }
         else if(commands[0].equals("todo")){
             if(commands.length<2){
@@ -57,6 +61,7 @@ public class Main {
 
             list[tasks.getTaskNum()]=new ToDo(line);
             System.out.println("");
+            writeToFile(filePath,getFileContain(list));
         }
         else if (commands[0].equals("deadline")){
             if(commands.length<2){
@@ -67,6 +72,7 @@ public class Main {
             }
             list[tasks.getTaskNum()]=new Deadline(line);
             System.out.println("");
+            writeToFile(filePath,getFileContain(list));
         }
 
         else if (commands[0].equals("event")){
@@ -78,6 +84,7 @@ public class Main {
             }
             list[tasks.getTaskNum()]=new Event(line);
             System.out.println("");
+            writeToFile(filePath,getFileContain(list));
         }
 
         else{
@@ -108,6 +115,20 @@ public class Main {
         }
 
     }
+
+    private static String getFileContain(tasks[] list){
+        String contain = "";
+        for(int i=0;i<tasks.getTaskNum();i++){
+            contain=contain+list[i].getTask()+System.lineSeparator();
+        }
+        return contain;
+    }
+    private static void writeToFile(String filePath, String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        fw.write(textToAdd);
+        fw.close();
+    }
+
 
 
 }
