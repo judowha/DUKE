@@ -5,8 +5,7 @@ public class tasks {
     protected boolean done;
     protected static int taskNum=0;
 
-    public tasks(String task) {
-        this.task = task;
+    public tasks() {
         this.done=false;
         taskNum++;
     }
@@ -37,8 +36,5 @@ public class tasks {
     }
 
     public void displayTasks() {
-        if(done==true)
-            System.out.println("[✓] "+task);
-        else System.out.println("[✗] "+task);
     }
 }
