@@ -2,9 +2,10 @@ import java.util.Scanner;
 import Duke.java.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class Main {
-    private static HashMap<Integer,String> taskList = new HashMap<>();
+    private static ArrayList<tasks> taskList = new ArrayList<>();
     public static void main(String[] args) throws DukeException {
 
         showGreeting();
@@ -21,12 +22,11 @@ public class Main {
 
     public static void storeInput() {
         String line;
-        tasks[] list=new tasks[100];
         tasks.setTaskNum(0);
         Scanner in=new Scanner(System.in);
         while(!(line= in.nextLine()).equals("bye")){
             try {
-                DukeComannds(line, list);
+                DukeComannds(line);
             }catch(DukeException e){
                 System.out.println(e);
                 System.out.println("");
@@ -37,22 +37,20 @@ public class Main {
 
     }
 
-    public static void DukeComannds(String line, tasks[] list) throws DukeException {
+    public static void DukeComannds(String line) throws DukeException {
         String[] commands;
 
         commands= line.split(" ");
 
         if(line.equals("list")){
-            listFaction(list);
+            listFaction();
             System.out.println("");
         }
         else if(commands[0].equals("todo")){
             if(commands.length<2){
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
-
-            list[tasks.getTaskNum()]=new ToDo(line);
-            taskList.put(tasks.getTaskNum(),list[tasks.getTaskNum()-1].getTask());
+            taskList.add(new ToDo(line));
             System.out.println("");
         }
         else if (commands[0].equals("deadline")){
@@ -62,8 +60,8 @@ public class Main {
             if(!line.contains("/")){
                 throw new DukeException("OOPS!!! Please indicate the time of the deadline by '/' ");
             }
-            list[tasks.getTaskNum()]=new Deadline(line);
-            taskList.put(tasks.getTaskNum(),list[tasks.getTaskNum()-1].getTask());
+
+            taskList.add(new Deadline(line));
             System.out.println("");
         }
 
@@ -74,22 +72,21 @@ public class Main {
             if(!line.contains("/")){
                 throw new DukeException("OOPS!!! Please indicate the time of the event by '/' ");
             }
-            list[tasks.getTaskNum()]=new Event(line);
-            taskList.put(tasks.getTaskNum(),list[tasks.getTaskNum()-1].getTask());
+            taskList.add(new Event(line));
             System.out.println("");
         }
         else if(commands[0].equals("done")){
             if(commands.length<2){
                 throw new DukeException("OOPS!!! The description of a done cannot be empty.");
             }
-            MarkAsDoneFaction(commands, list);
+            MarkAsDoneFaction(commands);
             System.out.println("");
         }
         else if(commands[0].equals("delete")){
             if(commands.length<2){
                 throw new DukeException("OOPS!!! The description of a done cannot be empty.");
             }
-            else deleteTask(commands,list);
+            else deleteTask(commands);
         }
 
 
@@ -99,24 +96,25 @@ public class Main {
 
     }
 
-    private static void MarkAsDoneFaction(String[] commands, tasks[] list) {
+    private static void MarkAsDoneFaction(String[] commands) {
         int currentTask=Integer.parseInt(commands[1])-1;
-        list[currentTask].setDone();
-        taskList.put(currentTask+1,list[currentTask].getTask());
+        taskList.get(currentTask).setDone();
     }
 
-    private static void deleteTask(String[] commands, tasks[] list){
-        int targetTask=Integer.parseInt(commands[1]);
+    private static void deleteTask(String[] commands){
+        int targetTask=Integer.parseInt(commands[1])-1;
         System.out.println("Noted. I've removed this task:");
-        list[targetTask-1].displayTasks();
-        System.out.println("Now you have "+tasks.getTaskNum()+ " tasks in the list.");
+        taskList.get(targetTask).displayTasks();
         taskList.remove(targetTask);
+        tasks.setTaskNum(tasks.getTaskNum()-1);
+        System.out.println("Now you have "+tasks.getTaskNum()+ " tasks in the list.");
+
     }
 
-    private static void listFaction(tasks[] list) {
+    private static void listFaction() {
         System.out.println("here are the tasks in you list: ");
-        for(Map.Entry<Integer,String> entry: taskList.entrySet()){
-            System.out.println(entry.getKey()+". "+entry.getValue());
+        for(int i=0; i<taskList.size();i++){
+            System.out.println(i+1+". "+taskList.get(i).getTask());
         }
 
     }
