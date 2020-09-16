@@ -35,6 +35,12 @@ public class tasks {
         return done;
     }
 
-    public void displayTasks() {
+    public void showAddInformation(){}
+
+    public void showSetDoneInformation(){
+        System.out.println("Nice! I've marked this task as done: ");
+        displayTasks();
     }
+
+    public void displayTasks() {}
 }

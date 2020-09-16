@@ -3,11 +3,13 @@ import Duke.java.*;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Main {
     private static ArrayList<tasks> taskList = new ArrayList<>();
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args)  {
 
         showGreeting();
         storeInput();
@@ -25,15 +27,20 @@ public class Main {
         String line;
         tasks.setTaskNum(0);
         Scanner in=new Scanner(System.in);
+        try{
+            ReadFile("duke.txt");
+        }catch(FileNotFoundException e){
+            System.out.println("A new file will be created to save your schedule");
+        }
         while(!(line= in.nextLine()).equals("bye")){
             try {
                 DukeComannds(line);
-            }catch(DukeException | IOException e){
+            }catch(DukeException  e){
                 System.out.println(e);
                 System.out.println("");
+            }catch(IOException e){
+                System.out.println("OOPS!!!, there are something wrong with the file"+System.lineSeparator());
             }
-
-
         }
 
     }
@@ -47,7 +54,6 @@ public class Main {
         if(line.equals("list")){
             listFaction();
             System.out.println("");
-            writeToFile(filePath,getFileContain());
 
         }
         else if(commands[0].equals("todo")){
@@ -55,6 +61,7 @@ public class Main {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
             taskList.add(new ToDo(line));
+            taskList.get(tasks.getTaskNum()-1).showAddInformation();
             System.out.println("");
             writeToFile(filePath,getFileContain());
         }
@@ -67,6 +74,7 @@ public class Main {
             }
 
             taskList.add(new Deadline(line));
+            taskList.get(tasks.getTaskNum()-1).showAddInformation();
             System.out.println("");
             writeToFile(filePath,getFileContain());
         }
@@ -79,6 +87,7 @@ public class Main {
                 throw new DukeException("OOPS!!! Please indicate the time of the event by '/' ");
             }
             taskList.add(new Event(line));
+            taskList.get(tasks.getTaskNum()-1).showAddInformation();
             System.out.println("");
             writeToFile(filePath,getFileContain());
         }
@@ -88,12 +97,14 @@ public class Main {
             }
             MarkAsDoneFaction(commands);
             System.out.println("");
+            writeToFile(filePath,getFileContain());
         }
         else if(commands[0].equals("delete")){
             if(commands.length<2){
                 throw new DukeException("OOPS!!! The description of a done cannot be empty.");
             }
             else deleteTask(commands);
+            writeToFile(filePath,getFileContain());
         }
 
 
@@ -106,6 +117,7 @@ public class Main {
     private static void MarkAsDoneFaction(String[] commands) {
         int currentTask=Integer.parseInt(commands[1])-1;
         taskList.get(currentTask).setDone();
+        taskList.get(currentTask).showSetDoneInformation();
     }
 
     private static void deleteTask(String[] commands){
@@ -114,14 +126,14 @@ public class Main {
         taskList.get(targetTask).displayTasks();
         taskList.remove(targetTask);
         tasks.setTaskNum(tasks.getTaskNum()-1);
-        System.out.println("Now you have "+tasks.getTaskNum()+ " tasks in the list.");
+        System.out.println("Now you have "+tasks.getTaskNum()+ " tasks in the list."+System.lineSeparator());
 
     }
 
     private static void listFaction() {
         System.out.println("here are the tasks in you list: ");
         for(int i=0; i<taskList.size();i++){
-            System.out.println(i+1+". "+taskList.get(i).getTask());
+            System.out.println(i+1+"."+taskList.get(i).getTask());
         }
 
     }
@@ -139,8 +151,35 @@ public class Main {
         fw.close();
     }
 
+    private static void ReadFile(String filePath) throws FileNotFoundException {
+        String taskCommand;
+        File f= new File(filePath);
+        Scanner s= new Scanner(f);
 
 
+        while (s.hasNext()){
+            taskCommand=s.nextLine();
 
+            if (taskCommand.charAt(5)=='D'){
+                Deadline task= new Deadline();
+                task.setTask(taskCommand.substring(2));
+                taskList.add(task);
 
+            }
+            else if (taskCommand.charAt(5)=='E'){
+                Event task= new Event();
+                task.setTask(taskCommand.substring(2));
+                taskList.add(task);
+            }
+            else if (taskCommand.charAt(5)=='T'){
+                ToDo task= new ToDo();
+                task.setTask(taskCommand.substring(2));
+                taskList.add(task);
+            }
+
+            if(taskCommand.charAt(7)=='\u2713'){
+                taskList.get(tasks.getTaskNum()-1).setDone();
+            }
+        }
+    }
 }
