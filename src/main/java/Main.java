@@ -107,6 +107,12 @@ public class Main {
             writeToFile(filePath,getFileContain());
         }
 
+        else if(commands[0].equals("find")){
+            if(commands.length<2){
+                throw new DukeException("OOPS!!! The description of a done cannot be empty.");
+            }
+            else findTask(commands);
+        }
 
         else{
             throw new DukeException("OOPS!!! This command doesn't exist");
@@ -136,6 +142,22 @@ public class Main {
             System.out.println(i+1+"."+taskList.get(i).getTask());
         }
 
+    }
+
+    private static void findTask(String[] commands){
+        int index=0;
+        String targetTask=commands[1];
+        System.out.println("Here are matching tasks in your list");
+        for(int i=0;i<taskList.size();i++){
+            if(taskList.get(i).getTask().contains(targetTask)){
+                index++;
+                System.out.println(index+"."+taskList.get(i).getTask());
+            }
+        }
+        if(index==0){
+            System.out.println("Sorry, no match task exists");
+        }
+        System.out.print(System.lineSeparator());
     }
 
     private static String getFileContain(){
