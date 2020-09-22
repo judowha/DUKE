@@ -1,185 +1,98 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import Duke.java.*;
+import opp.*;
 import java.util.ArrayList;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
-import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Main {
     private static ArrayList<tasks> taskList = new ArrayList<>();
+    private final static String EVENT="event";
+    private final static String TODO="todo";
+    private final static String DEADLINE="deadline";
+    private final static String BYE="bye";
+    private final static String LIST="list";
+    private final static String DONE="done";
+    private final static String DELETE="delete";
+    private final static String HELP="help";
+
     public static void main(String[] args)  {
 
-        showGreeting();
-        storeInput();
-        System.out.println("Bye. Hope to see you again soon");
+        UI.showGreetings();
+        RunReadFile();
+        RunDukeCommands();
+        UI.sayBye();
     }
 
-    private static void showGreeting() {
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
-        System.out.println("");
-    }
-
-
-    public static void storeInput() {
-        String line;
-        tasks.setTaskNum(0);
-        Scanner in=new Scanner(System.in);
+    public static void RunReadFile(){
         try{
-            ReadFile("duke.txt");
+            Storage.ReadFile("duke.txt",taskList);
         }catch(FileNotFoundException e){
             System.out.println("A new file will be created to save your schedule");
         }
-        while(!(line= in.nextLine()).equals("bye")){
-            try {
-                DukeComannds(line);
-            }catch(DukeException  e){
-                System.out.println(e);
-                System.out.println("");
-            }catch(IOException e){
-                System.out.println("OOPS!!!, there are something wrong with the file"+System.lineSeparator());
-            }
-        }
-
     }
 
+    public static void RunDukeCommands() {
+        String inputLine;
+        Scanner in=new Scanner(System.in);
+        while(!(inputLine= in.nextLine()).equals(BYE)){
+            try {
+                DukeCommands(inputLine);
+            }catch(DukeException e){
+                System.out.println(e+System.lineSeparator());
+            }catch(IOException e){
+                System.out.println("OOPS!!! there are something wrong with the file"+System.lineSeparator());
+            }catch(DateTimeParseException e){
+                System.out.println("OOPS!!! please check the input format of date and time"+System.lineSeparator());
+            }catch(NumberFormatException e){
+                System.out.println("OOPS!!! please ensure that you input a integer but not a character"+System.lineSeparator());
+            }
+        }
+    }
 
-
-    public static void DukeComannds(String line) throws DukeException, IOException {
+    public static void DukeCommands(String line) throws DukeException, IOException {
         String[] commands;
         commands= line.split(" ");
         String filePath="duke.txt";
-        if(line.equals("list")){
-            listFaction();
-            System.out.println("");
-
+        if(line.equals(LIST)){
+            TaskList.listFaction(taskList);
         }
-        else if(commands[0].equals("todo")){
-            if(commands.length<2){
-                throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-            }
-            taskList.add(new ToDo(line));
-            taskList.get(tasks.getTaskNum()-1).showAddInformation();
-            System.out.println("");
-            writeToFile(filePath,getFileContain());
+        else if(commands[0].equals(TODO)){
+            UI.CheckEmptyDescription(commands,TODO);
+            TaskList.AddToDoCommands(taskList,line);
+            Storage.writeToFile(filePath,Storage.getFileContain(taskList));
         }
-        else if (commands[0].equals("deadline")){
-            if(commands.length<2){
-                throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
-            }
-            if(!line.contains("/")){
-                throw new DukeException("OOPS!!! Please indicate the time of the deadline by '/' ");
-            }
-
-            taskList.add(new Deadline(line));
-            taskList.get(tasks.getTaskNum()-1).showAddInformation();
-            System.out.println("");
-            writeToFile(filePath,getFileContain());
+        else if (commands[0].equals(DEADLINE)){
+            UI.CheckEmptyDescription(commands,DEADLINE);
+            UI.CheckValidInputFormat(line,DEADLINE);
+            TaskList.AddDeadlineCommands(taskList,line);
+            Storage.writeToFile(filePath,Storage.getFileContain(taskList));
         }
 
-        else if (commands[0].equals("event")){
-            if(commands.length<2){
-                throw new DukeException("OOPS!!! The description of a event cannot be empty.");
-            }
-            if(!line.contains("/")){
-                throw new DukeException("OOPS!!! Please indicate the time of the event by '/' ");
-            }
-            taskList.add(new Event(line));
-            taskList.get(tasks.getTaskNum()-1).showAddInformation();
-            System.out.println("");
-            writeToFile(filePath,getFileContain());
+        else if (commands[0].equals(EVENT)){
+            UI.CheckEmptyDescription(commands,EVENT);
+            UI.CheckValidInputFormat(line,EVENT);
+            TaskList.AddEventCommands(taskList,line);
+            Storage.writeToFile(filePath,Storage.getFileContain(taskList));
         }
-        else if(commands[0].equals("done")){
-            if(commands.length<2){
-                throw new DukeException("OOPS!!! The description of a done cannot be empty.");
-            }
-            MarkAsDoneFaction(commands);
-            System.out.println("");
-            writeToFile(filePath,getFileContain());
+        else if(commands[0].equals(DONE)){
+            UI.CheckEmptyDescription(commands,DONE);
+            TaskList.MarkAsDoneFaction(commands,taskList);
+            Storage.writeToFile(filePath,Storage.getFileContain(taskList));
         }
-        else if(commands[0].equals("delete")){
-            if(commands.length<2){
-                throw new DukeException("OOPS!!! The description of a done cannot be empty.");
-            }
-            else deleteTask(commands);
-            writeToFile(filePath,getFileContain());
+        else if(commands[0].equals(DELETE)){
+            UI.CheckEmptyDescription(commands,DELETE);
+            TaskList.deleteTask(commands,taskList);
+            Storage.writeToFile(filePath,Storage.getFileContain(taskList));
         }
-
-
+        else if (commands[0].equals(HELP)){
+            UI.dukeHelp();
+        }
         else{
-            throw new DukeException("OOPS!!! This command doesn't exist");
+            throw new DukeException("OOPS!!! This command doesn't exist, please enter 'help' to get instructions. ");
         }
 
     }
 
-    private static void MarkAsDoneFaction(String[] commands) {
-        int currentTask=Integer.parseInt(commands[1])-1;
-        taskList.get(currentTask).setDone();
-        taskList.get(currentTask).showSetDoneInformation();
-    }
-
-    private static void deleteTask(String[] commands){
-        int targetTask=Integer.parseInt(commands[1])-1;
-        System.out.println("Noted. I've removed this task:");
-        taskList.get(targetTask).displayTasks();
-        taskList.remove(targetTask);
-        tasks.setTaskNum(tasks.getTaskNum()-1);
-        System.out.println("Now you have "+tasks.getTaskNum()+ " tasks in the list."+System.lineSeparator());
-
-    }
-
-    private static void listFaction() {
-        System.out.println("here are the tasks in you list: ");
-        for(int i=0; i<taskList.size();i++){
-            System.out.println(i+1+"."+taskList.get(i).getTask());
-        }
-
-    }
-
-    private static String getFileContain(){
-        String contain = "";
-        for(int i=0;i<tasks.getTaskNum();i++){
-            contain=contain+(i+1)+"."+taskList.get(i).getTask()+System.lineSeparator();
-        }
-        return contain;
-    }
-    private static void writeToFile(String filePath, String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
-        fw.write(textToAdd);
-        fw.close();
-    }
-
-    private static void ReadFile(String filePath) throws FileNotFoundException {
-        String taskCommand;
-        File f= new File(filePath);
-        Scanner s= new Scanner(f);
-
-
-        while (s.hasNext()){
-            taskCommand=s.nextLine();
-
-            if (taskCommand.charAt(5)=='D'){
-                Deadline task= new Deadline();
-                task.setTask(taskCommand.substring(2));
-                taskList.add(task);
-
-            }
-            else if (taskCommand.charAt(5)=='E'){
-                Event task= new Event();
-                task.setTask(taskCommand.substring(2));
-                taskList.add(task);
-            }
-            else if (taskCommand.charAt(5)=='T'){
-                ToDo task= new ToDo();
-                task.setTask(taskCommand.substring(2));
-                taskList.add(task);
-            }
-
-            if(taskCommand.charAt(7)=='\u2713'){
-                taskList.get(tasks.getTaskNum()-1).setDone();
-            }
-        }
-    }
 }

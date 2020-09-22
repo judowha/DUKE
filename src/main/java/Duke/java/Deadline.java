@@ -1,24 +1,23 @@
 package Duke.java;
 
+import opp.DukeException;
+import opp.Parser;
+
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends tasks{
-    private static final int CommandLength=9;
 
     public Deadline(){
         this.task="";
         this.done=false;
-
     }
-    public Deadline (String task) {
-        String[] contain;
-        contain=(task.substring(CommandLength)).split("/");
-        String commandContain=contain[0]+"("+contain[1]+")";
+
+    public Deadline (String task) throws DukeException {
+        String[] contain=Parser.parseDeadline(task);
+        this.date = Parser.parseDeadlineDate(task);
+        this.time = Parser.parseDeadlineTime(task);
+        String commandContain=contain[0]+"(at "+date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))+" "+time+")";
         this.task="  [D][\u2718] "+commandContain;
-    }
-
-    public void showAddInformation(){
-        System.out.println("Got it. I have add this task: ");
-        displayTasks();
-        System.out.println("Now you have "+taskNum+" tasks in the list.");
     }
 
     @Override
@@ -27,7 +26,5 @@ public class Deadline extends tasks{
         this.task="  [D][\u2713] " +task.substring(9);
 
     }
-    public  void displayTasks() {
-        System.out.println(this.task);
-    }
+
 }
