@@ -1,2 +1,0 @@
-1.  [D][✓] return the book (by 12pm)
-2.  [D][✓] attend the group meeting (at 2-3pm)

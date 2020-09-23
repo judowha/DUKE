@@ -1,35 +1,32 @@
 package Duke.java;
 
+import opp.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
 public class Event  extends tasks{
-    private static final int CommandLength=6;
+
+
     public Event(){
         this.task="";
         this.done=false;
     }
 
-    public Event (String task) {
-        String[] contain;
-        contain=(task.substring(CommandLength)).split("/");
-        String commandContain=contain[0]+"("+contain[1]+")";
-        this.task="  [D][\u2718] "+commandContain;
+    public Event (String task) throws DukeException{
+        String[] contain=Parser.parseEvent(task);
+        this.date=Parser.parseEventDate(task);
+        String[] time=Parser.parseEventTime(task);
+        LocalTime startTime = LocalTime.parse(time[0]);
+        LocalTime endTime = LocalTime.parse(time[1]);
+        this.time= startTime;
+        String newCommandContain=contain[0]+"(at "+date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))+" "+ startTime +"-"+ endTime +")";
+        this.task="  [E][\u2718] "+newCommandContain;
     }
-
-    public void showAddInformation(){
-        System.out.println("Got it. I have add this task: ");
-        displayTasks();
-        System.out.println("Now you have "+taskNum+" tasks in the list.");
-    }
-
-
 
     @Override
     public void setDone() {
         super.setDone();
-        this.task="  [D][\u2713] " +task.substring(9);
+        this.task="  [E][\u2713] " +task.substring(9);
     }
 
-    public  void displayTasks(){
-        System.out.println(this.task);
-
-    }
 }

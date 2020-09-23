@@ -1,15 +1,27 @@
 package Duke.java;
 
-public class tasks {
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+public  class tasks {
     protected String task;
     protected boolean done;
     protected static int taskNum=0;
+    protected LocalTime time;
+    protected LocalDate date;
 
     public tasks() {
         this.done=false;
         taskNum++;
     }
 
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
 
     public void setTask(String task) {
         this.task=task;
@@ -35,12 +47,8 @@ public class tasks {
         return done;
     }
 
-    public void showAddInformation(){}
-
-    public void showSetDoneInformation(){
-        System.out.println("Nice! I've marked this task as done: ");
-        displayTasks();
+    public void displayTask(){
+        System.out.println(this.task);
     }
 
-    public void displayTasks() {}
 }
