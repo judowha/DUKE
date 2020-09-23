@@ -57,6 +57,21 @@ public class TaskList {
         }
         System.out.print(System.lineSeparator());
     }
+    public static void findTask(String[] commands, ArrayList<tasks> taskList){
+        int index=0;
+        String targetTask=commands[1];
+        System.out.println("Here are matching tasks in your list");
+        for(int i=0;i<taskList.size();i++){
+            if(taskList.get(i).getTask().contains(targetTask)){
+                index++;
+                System.out.println(index+"."+taskList.get(i).getTask());
+            }
+        }
+        if(index==0){
+            System.out.println("Sorry, no match task exists");
+        }
+        System.out.print(System.lineSeparator());
+    }
 /*
     public static void remainderEvent(ArrayList<tasks> taskList, int index){
         LocalDate nowDate=LocalDate.now();

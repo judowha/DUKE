@@ -1,3 +1,4 @@
+import java.lang.module.FindException;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import Duke.java.*;
@@ -16,6 +17,7 @@ public class Main {
     private final static String DONE="done";
     private final static String DELETE="delete";
     private final static String HELP="help";
+    private final static String FIND="find";
 
     public static void main(String[] args)  {
 
@@ -53,75 +55,47 @@ public class Main {
 
     public static void DukeCommands(String line) throws DukeException, IOException {
         String[] commands;
-        commands= line.split(" ");
-        String filePath="duke.txt";
-        if(line.equals(LIST)){
+        commands = line.split(" ");
+        String filePath = "duke.txt";
+        if (line.equals(LIST)) {
             TaskList.listFaction(taskList);
         }
-        else if(commands[0].equals(TODO)){
-            UI.CheckEmptyDescription(commands,TODO);
-            TaskList.AddToDoCommands(taskList,line);
-            Storage.writeToFile(filePath,Storage.getFileContain(taskList));
+        else if (commands[0].equals(TODO)) {
+            UI.CheckEmptyDescription(commands, TODO);
+            TaskList.AddToDoCommands(taskList, line);
+            Storage.writeToFile(filePath, Storage.getFileContain(taskList));
         }
-        else if (commands[0].equals(DEADLINE)){
-            UI.CheckEmptyDescription(commands,DEADLINE);
-            UI.CheckValidInputFormat(line,DEADLINE);
-            TaskList.AddDeadlineCommands(taskList,line);
-            Storage.writeToFile(filePath,Storage.getFileContain(taskList));
+        else if (commands[0].equals(DEADLINE)) {
+            UI.CheckEmptyDescription(commands, DEADLINE);
+            UI.CheckValidInputFormat(line, DEADLINE);
+            TaskList.AddDeadlineCommands(taskList, line);
+            Storage.writeToFile(filePath, Storage.getFileContain(taskList));
         }
-
-        else if (commands[0].equals(EVENT)){
-            UI.CheckEmptyDescription(commands,EVENT);
-            UI.CheckValidInputFormat(line,EVENT);
-            TaskList.AddEventCommands(taskList,line);
-            Storage.writeToFile(filePath,Storage.getFileContain(taskList));
+        else if (commands[0].equals(EVENT)) {
+            UI.CheckEmptyDescription(commands, EVENT);
+            UI.CheckValidInputFormat(line, EVENT);
+            TaskList.AddEventCommands(taskList, line);
+            Storage.writeToFile(filePath, Storage.getFileContain(taskList));
         }
-        else if(commands[0].equals(DONE)){
-            UI.CheckEmptyDescription(commands,DONE);
-            TaskList.MarkAsDoneFaction(commands,taskList);
-            Storage.writeToFile(filePath,Storage.getFileContain(taskList));
+        else if (commands[0].equals(DONE)) {
+            UI.CheckEmptyDescription(commands, DONE);
+            TaskList.MarkAsDoneFaction(commands, taskList);
+            Storage.writeToFile(filePath, Storage.getFileContain(taskList));
         }
-        else if(commands[0].equals(DELETE)){
-            UI.CheckEmptyDescription(commands,DELETE);
-            TaskList.deleteTask(commands,taskList);
-            Storage.writeToFile(filePath,Storage.getFileContain(taskList));
+        else if (commands[0].equals(DELETE)) {
+            UI.CheckEmptyDescription(commands, DELETE);
+            TaskList.deleteTask(commands, taskList);
+            Storage.writeToFile(filePath, Storage.getFileContain(taskList));
         }
-
-
-        else if(commands[0].equals("find")){
-            if(commands.length<2){
-                throw new DukeException("OOPS!!! The description of a done cannot be empty.");
-            }
-            else findTask(commands);
+        else if (commands[0].equals(FIND)) {
+            UI.CheckEmptyDescription(commands,FIND);
+            TaskList.findTask(commands, taskList);
         }
-
-        else{
-            throw new DukeException("OOPS!!! This command doesn't exist");
-
-        else if (commands[0].equals(HELP)){
+        else if (commands[0].equals(HELP)) {
             UI.dukeHelp();
         }
-        else{
-            throw new DukeException("OOPS!!! This command doesn't exist, please enter 'help' to get instructions. ");
+        else {
+            UI.NoneExistCommand();
         }
-
     }
-
-
-    private static void findTask(String[] commands){
-        int index=0;
-        String targetTask=commands[1];
-        System.out.println("Here are matching tasks in your list");
-        for(int i=0;i<taskList.size();i++){
-            if(taskList.get(i).getTask().contains(targetTask)){
-                index++;
-                System.out.println(index+"."+taskList.get(i).getTask());
-            }
-        }
-        if(index==0){
-            System.out.println("Sorry, no match task exists");
-        }
-        System.out.print(System.lineSeparator());
-    }
-
 }

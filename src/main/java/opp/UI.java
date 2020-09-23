@@ -59,6 +59,9 @@ public class UI {
         System.out.println(task+System.lineSeparator());
     }
 
+    public static void NoneExistCommand() throws DukeException{
+        throw new DukeException("OOPS!!! This command doesn't exist");
+    }
     public static void sayBye(){
         System.out.println("Bye. Hope to see you again soon");
     }
