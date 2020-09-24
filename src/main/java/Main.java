@@ -1,8 +1,7 @@
-import java.lang.module.FindException;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import Duke.java.*;
-import opp.*;
+import oop.*;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -52,6 +51,14 @@ public class Main {
             }
         }
     }
+
+
+    /**
+     * Accept users' input and do corresponding commands
+     * @param line
+     * @throws DukeException
+     * @throws IOException
+     */
 
     public static void DukeCommands(String line) throws DukeException, IOException {
         String[] commands;

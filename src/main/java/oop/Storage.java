@@ -1,4 +1,4 @@
-package opp;
+package oop;
 
 import Duke.java.Deadline;
 import Duke.java.Event;
@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 public class Storage {
     public static String getFileContain(ArrayList<tasks> taskList){
         String contain = "";
@@ -19,12 +21,26 @@ public class Storage {
         }
         return contain;
     }
+
+    /**
+     * Write the contain testToAdd to a file
+     * @param filePath
+     * @param textToAdd
+     * @throws IOException
+     */
     public static void writeToFile(String filePath, String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write(textToAdd);
         fw.close();
     }
 
+
+    /**
+     * Read a file from the filePath and store it in the task list
+     * @param filePath
+     * @param taskList
+     * @throws FileNotFoundException
+     */
     public static void ReadFile(String filePath, ArrayList<tasks> taskList) throws FileNotFoundException {
         String taskCommand;
         File f= new File(filePath);

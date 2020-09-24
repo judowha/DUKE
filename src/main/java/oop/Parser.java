@@ -1,4 +1,4 @@
-package opp;
+package oop;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -7,7 +7,6 @@ public class Parser {
     public static String parseToDO(String command){
         final int commandLength=5;
         return command.substring(commandLength);
-
     }
 
     public static String[] parseDeadline(String command){
@@ -22,6 +21,13 @@ public class Parser {
         return commandContain;
     }
 
+    /**
+     *Accept a deadline command and then get the date of the deadline
+     *
+     * @param command
+     * @return
+     * @throws DukeException
+     */
     public static LocalDate parseDeadlineDate(String command) throws DukeException {
         String[] commandContain= parseDeadline(command);
         String dateInformation=commandContain[1];
@@ -32,6 +38,13 @@ public class Parser {
         return LocalDate.parse(dateContain[1]);
     }
 
+    /**
+     * Accept a Event command and then get the date of the event
+     *
+     * @param command
+     * @return
+     * @throws DukeException
+     */
     public static LocalDate parseEventDate(String command) throws DukeException {
         String[] commandContain= parseEvent(command);
         String dateInformation=commandContain[1];
@@ -42,6 +55,13 @@ public class Parser {
         return LocalDate.parse(dateContain[1]);
     }
 
+    /**
+     * Accept a Deadline command and then get the time of the deadline
+     *
+     * @param command
+     * @return
+     * @throws DukeException
+     */
     public static LocalTime parseDeadlineTime(String command) throws DukeException{
         String[] commandContain= parseDeadline(command);
         String dateInformation=commandContain[1];
@@ -53,6 +73,13 @@ public class Parser {
 
     }
 
+    /**
+     * Accept a Event command and then get the time of the event
+     *
+     * @param command
+     * @return
+     * @throws DukeException
+     */
     public static String[] parseEventTime(String command) throws DukeException{
         String[] commandContain= parseEvent(command);
         String dateInformation=commandContain[1];

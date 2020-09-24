@@ -1,7 +1,7 @@
 package Duke.java;
 
-import opp.DukeException;
-import opp.Parser;
+import oop.DukeException;
+import oop.Parser;
 
 import java.time.format.DateTimeFormatter;
 
