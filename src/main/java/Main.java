@@ -55,9 +55,9 @@ public class Main {
 
     /**
      * Accept users' input and do corresponding commands
-     * @param line
-     * @throws DukeException
-     * @throws IOException
+     * @param line users' input line
+     * @throws DukeException DukeException
+     * @throws IOException IOException
      */
 
     public static void DukeCommands(String line) throws DukeException, IOException {

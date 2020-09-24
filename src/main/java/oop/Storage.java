@@ -24,9 +24,9 @@ public class Storage {
 
     /**
      * Write the contain testToAdd to a file
-     * @param filePath
-     * @param textToAdd
-     * @throws IOException
+     * @param filePath path of the file
+     * @param textToAdd text wants to add
+     * @throws IOException IOException
      */
     public static void writeToFile(String filePath, String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
@@ -37,9 +37,9 @@ public class Storage {
 
     /**
      * Read a file from the filePath and store it in the task list
-     * @param filePath
-     * @param taskList
-     * @throws FileNotFoundException
+     * @param filePath path of the file
+     * @param taskList target array list
+     * @throws FileNotFoundException if the file does not exist
      */
     public static void ReadFile(String filePath, ArrayList<tasks> taskList) throws FileNotFoundException {
         String taskCommand;

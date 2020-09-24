@@ -24,9 +24,9 @@ public class Parser {
     /**
      *Accept a deadline command and then get the date of the deadline
      *
-     * @param command
-     * @return
-     * @throws DukeException
+     * @param command input command
+     * @return the date of the deadline
+     * @throws DukeException if date is missing
      */
     public static LocalDate parseDeadlineDate(String command) throws DukeException {
         String[] commandContain= parseDeadline(command);
@@ -41,9 +41,9 @@ public class Parser {
     /**
      * Accept a Event command and then get the date of the event
      *
-     * @param command
-     * @return
-     * @throws DukeException
+     * @param command input command
+     * @return the date of the event
+     * @throws DukeException if date is missing
      */
     public static LocalDate parseEventDate(String command) throws DukeException {
         String[] commandContain= parseEvent(command);
@@ -58,9 +58,9 @@ public class Parser {
     /**
      * Accept a Deadline command and then get the time of the deadline
      *
-     * @param command
-     * @return
-     * @throws DukeException
+     * @param command input command
+     * @return the time of the deadline
+     * @throws DukeException if time is missing
      */
     public static LocalTime parseDeadlineTime(String command) throws DukeException{
         String[] commandContain= parseDeadline(command);
@@ -76,9 +76,9 @@ public class Parser {
     /**
      * Accept a Event command and then get the time of the event
      *
-     * @param command
-     * @return
-     * @throws DukeException
+     * @param command input command
+     * @return the start time and the end time
+     * @throws DukeException if the time is missing. if start time or end time is missing
      */
     public static String[] parseEventTime(String command) throws DukeException{
         String[] commandContain= parseEvent(command);

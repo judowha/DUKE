@@ -12,8 +12,8 @@ public class TaskList {
     /**
      * Add a task of type to do in the list of tasks.
      *
-     * @param taskList
-     * @param line
+     * @param taskList target array list
+     * @param line the input line
      */
     public static void AddToDoCommands(ArrayList<tasks> taskList, String line) {
 
@@ -25,8 +25,8 @@ public class TaskList {
     /**
      * Add a task of type event in the list of tasks.
      *
-     * @param taskList
-     * @param line
+     * @param taskList target array list
+     * @param line the input line
      */
     public static void AddEventCommands(ArrayList<tasks> taskList, String line) throws DukeException {
 
@@ -38,8 +38,8 @@ public class TaskList {
     /**
      * Add a task of type deadline in the list of tasks.
      *
-     * @param taskList
-     * @param line
+     * @param taskList target array list
+     * @param line the input line
      */
     public static void AddDeadlineCommands(ArrayList<tasks> taskList, String line) throws DukeException {
 
@@ -51,8 +51,8 @@ public class TaskList {
     /**
      * Remove a specific task from the task list.
      *
-     * @param commands
-     * @param taskList
+     * @param commands input command
+     * @param taskList target array list
      * @throws DukeException
      */
     public static void deleteTask(String[] commands, ArrayList<tasks> taskList) throws DukeException {
@@ -71,8 +71,8 @@ public class TaskList {
     /**
      * Set a specific task as done.
      *
-     * @param commands
-     * @param taskList
+     * @param commands input command
+     * @param taskList target array list
      * @throws DukeException
      */
     public static void MarkAsDoneFaction(String[] commands, ArrayList<tasks> taskList) throws DukeException {
@@ -87,7 +87,7 @@ public class TaskList {
     /**
      * Show the full task list.
      *
-     * @param taskList
+     * @param taskList target array list
      */
     public static void listFaction(ArrayList<tasks> taskList) {
         System.out.println("here are the tasks in you list: ");
@@ -100,8 +100,8 @@ public class TaskList {
     /**
      * Find a task in the task list by searching for a keyword.
      *
-     * @param commands
-     * @param taskList
+     * @param commands input command
+     * @param taskList target array list
      */
     public static void findTask(String[] commands, ArrayList<tasks> taskList) {
         int index = 0;
