@@ -67,7 +67,7 @@ public class Storage {
                 taskList.add(task);
             }
 
-            if(taskCommand.charAt(7)=='\u2713'){
+            if(taskCommand.charAt(7)=='D'){
                 taskList.get(tasks.getTaskNum()-1).setDone();
             }
         }

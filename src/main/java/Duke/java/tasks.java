@@ -11,8 +11,7 @@ public  class tasks {
     protected LocalDate date;
 
     public tasks() {
-        this.done=false;
-        taskNum++;
+
     }
 
     public LocalTime getTime() {

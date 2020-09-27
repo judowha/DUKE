@@ -30,7 +30,7 @@ public class Main {
         try{
             Storage.ReadFile("duke.txt",taskList);
         }catch(FileNotFoundException e){
-            System.out.println("A new file will be created to save your schedule");
+            System.out.println("A new file will be created to save your schedule"+System.lineSeparator());
         }
     }
 

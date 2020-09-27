@@ -73,7 +73,7 @@ public class TaskList {
      *
      * @param commands input command
      * @param taskList target array list
-     * @throws DukeException
+     * @throws DukeException if the index number of the task is not valid
      */
     public static void MarkAsDoneFaction(String[] commands, ArrayList<tasks> taskList) throws DukeException {
         int currentTask = Integer.parseInt(commands[1]) - 1;
@@ -94,7 +94,7 @@ public class TaskList {
         for (int i = 0; i < taskList.size(); i++) {
             System.out.println(i + 1 + "." + taskList.get(i).getTask());
         }
-        System.out.print(System.lineSeparator());
+        System.out.println("Now you have " + tasks.getTaskNum() + " tasks in the list." + System.lineSeparator());
     }
 
     /**

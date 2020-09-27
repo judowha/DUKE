@@ -4,23 +4,23 @@ import oop.Parser;
 
 public class ToDo extends tasks {
 
+
     public ToDo() {
+        taskNum++;
         this.task="";
         this.done=false;
     }
 
     public ToDo(String task){
-        this.task="  [T][\u2718] "+ Parser.parseToDO(task);
+        this.task="  [T][NOTDone] "+ Parser.parseToDO(task);
+        this.done=false;
+        taskNum++;
     }
 
-
+    static final int indicatorLength=14;
     @Override
     public void setDone() {
-        this.task="  [T][\u2713] "+task.substring(9);
+        this.task="  [T][Done] "+task.substring(indicatorLength);
         super.setDone();
     }
-
-
-
-
 }
