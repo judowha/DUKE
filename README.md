@@ -6,7 +6,7 @@ DUKE is a desktop app allows users to record tasks to schedule their work better
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-2. Download the latest DUKE.jar from [here](https://github.com/judowha/ip/releases/tag/v1.0).
+2. Download the latest DUKE.jar from [here](https://github.com/judowha/ip/releases/tag/A-Release).
 
 3. Copy the file to the folder you want to use as the home folder for your DUKE.
 
