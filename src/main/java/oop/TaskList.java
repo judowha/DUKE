@@ -1,9 +1,9 @@
 package oop;
 
-import Duke.java.Deadline;
-import Duke.java.Event;
-import Duke.java.ToDo;
-import Duke.java.tasks;
+import Duke.Deadline;
+import Duke.Event;
+import Duke.ToDo;
+import Duke.tasks;
 
 import java.util.ArrayList;
 
@@ -90,7 +90,7 @@ public class TaskList {
      * @param taskList target array list
      */
     public static void listFaction(ArrayList<tasks> taskList) {
-        System.out.println("here are the tasks in you list: ");
+        System.out.println("here are the tasks in you list:");
         for (int i = 0; i < taskList.size(); i++) {
             System.out.println(i + 1 + "." + taskList.get(i).getTask());
         }

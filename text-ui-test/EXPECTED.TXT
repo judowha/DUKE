@@ -1,32 +1,38 @@
 Hello! I'm Duke
 What can I do for you?
+if you need help, please enter 'help' to get instruction
 
-Got it. I've added this task:
-  [T][✗] read books
+Got it. I have add this task:
+  [T][NOTDone] read books
 Now you have 1 tasks in the list.
 
-DukeException: OOPS!!! The description of a todo cannot be empty.
+oop.DukeException: OOPS!!! The description of a todo cannot be empty.
 
 Got it. I have add this task:
-  [D][✗] return books (by Sunday)
+  [D][NOTDone] return the book (at 9月 22 2020 18:00)
 Now you have 2 tasks in the list.
 
-DukeException: OOPS!!! The description of a deadline cannot be empty.
+oop.DukeException: OOPS!!! The description of a deadline cannot be empty.
 
 Got it. I have add this task:
-  [E][✗] project meeting (at Aug 6th 2-4pm)
+  [E][NOTDone] things (at 9月 22 2020 18:00-19:00)
 Now you have 3 tasks in the list.
 
-DukeException: OOPS!!! Please indicate the time of the event by '/'
+oop.DukeException: OOPS!!! Please indicate the time of the event by '/'
 
-DukeException: OOPS!!! This command doesn't exist
+oop.DukeException: OOPS!!! This command doesn't exist
 
-Nice, I have marked this work as done
-  [D][✓] return books (by Sunday)
+OOPS!!! please check the input format of date and time
 
-here are the tasks in you list: 
-  1.  [T][✗] reak books
-  2.  [D][✓] return books (by Sunday)
-  3.  [E][✗] project meeting (at Aug 6th 2-4pm)
+oop.DukeException: OOPS!!! please ensure both date and time are written
+
+Nice! I've marked this task as done:
+  [D][Done]  return the book (at 9月 22 2020 18:00)
+
+here are the tasks in you list:
+1.  [T][NOTDone] read books
+2.  [D][Done]  return the book (at 9月 22 2020 18:00)
+3.  [E][NOTDone] things (at 9月 22 2020 18:00-19:00)
+Now you have 3 tasks in the list.
 
 Bye. Hope to see you again soon

@@ -1,3 +1,0 @@
-1.  [T][Done]  read a book
-2.  [D][Done]  retur the book (at 10月 1 2020 12:00)
-3.  [D][NOTDone] submit quiz2 (at 9月 26 2020 11:13)

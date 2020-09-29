@@ -1,4 +1,4 @@
-package Duke.java;
+package Duke;
 
 import oop.DukeException;
 import oop.Parser;

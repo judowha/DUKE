@@ -1,6 +1,6 @@
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-import Duke.java.*;
+import Duke.*;
 import oop.*;
 import java.util.ArrayList;
 import java.io.IOException;

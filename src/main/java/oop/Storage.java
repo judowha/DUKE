@@ -1,9 +1,9 @@
 package oop;
 
-import Duke.java.Deadline;
-import Duke.java.Event;
-import Duke.java.ToDo;
-import Duke.java.tasks;
+import Duke.Deadline;
+import Duke.Event;
+import Duke.ToDo;
+import Duke.tasks;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

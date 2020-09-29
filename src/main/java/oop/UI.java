@@ -1,10 +1,10 @@
 package oop;
 
-import Duke.java.tasks;
+import Duke.tasks;
 
 public class UI {
     public static void dukeHelp(){
-        System.out.println("Here are available functions and the corresponding format: "+System.lineSeparator());
+        System.out.println("Here are available functions and the corresponding format:"+System.lineSeparator());
         System.out.println("todo: record what should be done next");
         System.out.println("Format for todo: todo <things you want to record>");
         System.out.println("Example: todo read a book"+System.lineSeparator());
@@ -36,7 +36,7 @@ public class UI {
     }
 
     public static void showAddInformation(String task){
-        System.out.println("Got it. I have add this task: ");
+        System.out.println("Got it. I have add this task:");
         System.out.println(task);
         System.out.println("Now you have "+ tasks.getTaskNum()+" tasks in the list."+System.lineSeparator());
     }
@@ -49,13 +49,13 @@ public class UI {
 
     public static void CheckValidInputFormat(String line, String type) throws DukeException {
         if(!line.contains("/")){
-            throw new DukeException("OOPS!!! Please indicate the time of the "+type+" by '/' ");
+            throw new DukeException("OOPS!!! Please indicate the time of the "+type+" by '/'");
         }
 
     }
 
     public static void showSetDoneInformation(String task){
-        System.out.println("Nice! I've marked this task as done: ");
+        System.out.println("Nice! I've marked this task as done:");
         System.out.println(task+System.lineSeparator());
     }
 
