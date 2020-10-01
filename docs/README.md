@@ -39,42 +39,49 @@ Describe action and its outcome.
 
 * ##### View Help: `help`
     Format: `help`  
-    Expected output: ![help](https://github.com/judowha/ip/blob/master/image/help.png)
+    Expected output: 
+    ![help](https://github.com/judowha/ip/blob/master/image/help.png)
     
 * ##### Add a ToDO task: `todo`
 
     Format: `todo TASK`  
     Example:`todo read a book`  
-    Expected output: ![todo](https://github.com/judowha/ip/blob/master/image/todo.png)  
+    Expected output: 
+    ![todo](https://github.com/judowha/ip/blob/master/image/todo.png)  
   
 * ##### Add a Deadline task: `deadline` 
     Format: `deadline TASK /by  YYYY-MM-DD  HOUR:MINUTE`  
     * the '/' is needed to indicate that the following parts include date and time  
     * the format of date and time is not flexible  
-    Example: `deadline return the book /by 2020-10-01 19:00`
-    Expected output: ![deadline](https://github.com/judowha/ip/blob/master/image/deadline.png)  
+    Example: `deadline return the book /by 2020-10-01 19:00`  
+    Expected output:
+    ![deadline](https://github.com/judowha/ip/blob/master/image/deadline.png)  
 
 * ##### Add an Event task: `event`
     Format: `event TASK /at  YYYY-MM-DD  STARTHOUR:STARTMINUTE-ENDHOUR:ENDMINUTE`  
     * the '/' is needed to indicate that the following parts include date and time  
     * the format of date and time is not flexible  
-    Example: `event return the book /by 2020-10-01 19:00-20:00`
-    Expected output: ![event](https://github.com/judowha/ip/blob/master/image/event.png)  
+    Example: `event return the book /by 2020-10-01 19:00-20:00`  
+    Expected output: 
+    ![event](https://github.com/judowha/ip/blob/master/image/event.png)  
     
 * #### Mark a task as done: `done`
     Format: `done INDEX`      
     Example: `done 1`  
-    Expected output: ![done](https://github.com/judowha/ip/blob/master/image/done.png)  
+    Expected output: 
+    ![done](https://github.com/judowha/ip/blob/master/image/done.png)  
 
 * #### Delete a task: `delete`
     Format: `delete INDEX`     
     Example: `delete 1`  
-    Expected output: ![delete](https://github.com/judowha/ip/blob/master/image/delete.png)  
+    Expected output: 
+    ![delete](https://github.com/judowha/ip/blob/master/image/delete.png)  
     
 * #### Find a task: `find`
     Format: `find KEYWORDS`  
     Example: `find book`  
-    Expected output: ![find](https://github.com/judowha/ip/blob/master/image/find.png)  
+    Expected output: 
+    ![find](https://github.com/judowha/ip/blob/master/image/find.png)  
 
 
 ##Command Summary
