@@ -18,13 +18,13 @@ Description of feature.
 * ##### View Help: `help`
     Show a help message which will explain all commands in detail.  
 * ##### Add a ToDO task: `todo`
-    Add a task which you want to do but has no specific date or time.  
+    Add a task which you want to do but has no specific date or time. To do task will be indicated by `[T]` in the task list.  
 * ##### Add a Deadline task: `deadline`
     Add a task which need to be done before the deadline. Deadline tasks will be indicated by `[D]` in the task list.      
 * ##### Add an Event task: `event`
-    Add a task which need to be done in a specific duration.  
+    Add a task which need to be done in a specific duration. Event tasks will be indicated by `[E]` in the task list.  
 * #### Mark a task as done: `done`
-    Mark a task as done when the task is completed.
+    Mark a task as done when the task is completed. The task will be indicated by `[Done]` if the task is done.  
 * #### Delete a task: `delete`
     Delete a task when you want to remove it from the task list. 
 * #### Find a task: `find`
