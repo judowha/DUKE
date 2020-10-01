@@ -53,6 +53,7 @@ Describe action and its outcome.
     Format: `deadline TASK /by  YYYY-MM-DD  HOUR:MINUTE`  
     * the '/' is needed to indicate that the following parts include date and time  
     * the format of date and time is not flexible  
+    
     Example: `deadline return the book /by 2020-10-01 19:00`  
     Expected output:  
     ![deadline](https://github.com/judowha/ip/blob/master/image/deadline.png)  
@@ -61,6 +62,7 @@ Describe action and its outcome.
     Format: `event TASK /at  YYYY-MM-DD  STARTHOUR:STARTMINUTE-ENDHOUR:ENDMINUTE`  
     * the '/' is needed to indicate that the following parts include date and time  
     * the format of date and time is not flexible  
+    
     Example: `event return the book /by 2020-10-01 19:00-20:00`  
     Expected output:  
     ![event](https://github.com/judowha/ip/blob/master/image/event.png)  
