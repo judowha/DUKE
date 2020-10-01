@@ -41,7 +41,32 @@ Describe action and its outcome.
     Format: `help`  
     Expected output:  
     
-    ![help](https://github.com/judowha/ip/blob/master/image/help.png)
+    
+        Here are available functions and the corresponding format:
+    
+        todo: record what should be done next
+        Format for todo: todo <things you want to record>
+        Example: todo read a book
+    
+        Deadline: record a deadline
+        Format for deadline: deadline <things you want to record> /by <yyyy-mm-dd time>
+        Example: todo return the book /by 2020-10-1 18:00
+    
+        event: record a event that will happen in a specific duration
+        Format for event: event <things you want to record> /at <yyyy-mm-dd startTime-endTime>
+        Example: event attend the group meeting /at 2020-10-01 18:00-19:00
+    
+        done: indicate that a task has been done
+        Format for done: done <taskNUmber>
+        Example: done 2
+    
+        delete: delete a recorded task
+        Format for delete: delete <taskNUmber>
+        Example: delete 2
+    
+        list: show all the task
+        Format for done: list
+        Example: list
     
 * ##### Add a ToDO task: `todo`
 
@@ -49,7 +74,10 @@ Describe action and its outcome.
     Example:`todo read a book`  
     Expected output:   
     
-    ![todo](https://github.com/judowha/ip/blob/master/image/todo.png)  
+    
+        Got it. I have add this task:
+          [T][NOTDone] read a book
+        Now you have 1 tasks in the list.
   
 * ##### Add a Deadline task: `deadline` 
     Format: `deadline TASK /by  YYYY-MM-DD  HOUR:MINUTE`  
@@ -59,7 +87,10 @@ Describe action and its outcome.
     Example: `deadline return the book /by 2020-10-01 19:00`  
     Expected output:  
     
-    ![deadline](https://github.com/judowha/ip/blob/master/image/deadline.png)  
+    
+        Got it. I have add this task:
+             [D][NOTDone] return the book (at 10月 1 2020 19:00)
+        Now you have 2 tasks in the list.
 
 * ##### Add an Event task: `event`
     Format: `event TASK /at  YYYY-MM-DD  STARTHOUR:STARTMINUTE-ENDHOUR:ENDMINUTE`  
@@ -69,28 +100,40 @@ Describe action and its outcome.
     Example: `event return the book /by 2020-10-01 19:00-20:00`  
     Expected output:  
     
-    ![event](https://github.com/judowha/ip/blob/master/image/event.png)  
+    
+        Got it. I have add this task:
+             [E][NOTDone] return the book (at 10月 1 2020 19:00-20:00)
+        Now you have 3 tasks in the list.
+
     
 * #### Mark a task as done: `done`
     Format: `done INDEX`      
     Example: `done 1`  
     Expected output:  
     
-    ![done](https://github.com/judowha/ip/blob/master/image/done.png)  
+    
+        Nice! I've marked this task as done:
+          [T][Done]  read a book
 
 * #### Delete a task: `delete`
     Format: `delete INDEX`     
     Example: `delete 1`  
     Expected output:  
     
-    ![delete](https://github.com/judowha/ip/blob/master/image/delete.png)  
+    
+        Noted. I've removed this task:
+          [T][Done]  read a book
+        Now you have 2 tasks in the list.  
     
 * #### Find a task: `find`
     Format: `find KEYWORDS`  
     Example: `find book`  
     Expected output:   
     
-    ![find](https://github.com/judowha/ip/blob/master/image/find.png)  
+    
+        Here are matching tasks in your list
+        1.  [D][NOTDone] return the book (at 10月 1 2020 19:00)
+        2.  [E][NOTDone] return the book (at 10月 1 2020 19:00-20:00)
 
 
 ##Command Summary
