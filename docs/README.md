@@ -15,14 +15,16 @@ DUKE is a desktop app allows users to record tasks to schedule their work better
 
 ### Feature 1 
 Description of feature.
-* ##### View Help: `help`
+* #### View Help: `help`
     Show a help message which will explain all commands in detail.  
-* ##### Add a ToDO task: `todo`
+* #### Add a ToDO task: `todo`
     Add a task which you want to do but has no specific date or time. To do task will be indicated by `[T]` in the task list.  
-* ##### Add a Deadline task: `deadline`
+* #### Add a Deadline task: `deadline`
     Add a task which need to be done before the deadline. Deadline tasks will be indicated by `[D]` in the task list.      
-* ##### Add an Event task: `event`
+* #### Add an Event task: `event`
     Add a task which need to be done in a specific duration. Event tasks will be indicated by `[E]` in the task list.  
+* #### Show the list: `list`
+    Show the task list
 * #### Mark a task as done: `done`
     Mark a task as done when the task is completed. The task will be indicated by `[Done]` if the task is done.  
 * #### Delete a task: `delete`
@@ -37,7 +39,7 @@ Description of feature.
 
 Describe action and its outcome.
 
-* ##### View Help: `help`
+* #### View Help: `help`
     Format: `help`  
     Expected output:  
     
@@ -68,7 +70,7 @@ Describe action and its outcome.
         Format for done: list
         Example: list
     
-* ##### Add a ToDO task: `todo`
+* #### Add a ToDO task: `todo`
 
     Format: `todo TASK`  
     Example:`todo read a book`  
@@ -79,7 +81,7 @@ Describe action and its outcome.
           [T][NOTDone] read a book
         Now you have 1 tasks in the list.
   
-* ##### Add a Deadline task: `deadline` 
+* #### Add a Deadline task: `deadline` 
     Format: `deadline TASK /by  YYYY-MM-DD  HOUR:MINUTE`  
     * the '/' is needed to indicate that the following parts include date and time  
     * the format of date and time is not flexible  
@@ -92,7 +94,7 @@ Describe action and its outcome.
              [D][NOTDone] return the book (at 10月 1 2020 19:00)
         Now you have 2 tasks in the list.
 
-* ##### Add an Event task: `event`
+* #### Add an Event task: `event`
     Format: `event TASK /at  YYYY-MM-DD  STARTHOUR:STARTMINUTE-ENDHOUR:ENDMINUTE`  
     * the '/' is needed to indicate that the following parts include date and time  
     * the format of date and time is not flexible  
@@ -105,6 +107,18 @@ Describe action and its outcome.
              [E][NOTDone] return the book (at 10月 1 2020 19:00-20:00)
         Now you have 3 tasks in the list.
 
+
+* #### Show the list: `list`
+    Format: `list`      
+    Expected output:  
+    
+    
+        here are the tasks in you list:
+        1.  [T][NOTDone] read a book
+        2.  [D][NOTDone] return the book (at 10月 1 2020 19:00)
+        3.  [E][NOTDone] return the book (at 10月 1 2020 19:00-20:00)
+        Now you have 3 tasks in the list.
+    
     
 * #### Mark a task as done: `done`
     Format: `done INDEX`      
